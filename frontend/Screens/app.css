@@ -1,0 +1,9 @@
+body{
+   background-color:aqua,rgb(41, 89, 249);
+   display: flex;
+   align-items: center;
+   justify-content:space-around;
+   flex-direction: column;
+   column-gap: 20px;
+   cursor: pointer;
+}
