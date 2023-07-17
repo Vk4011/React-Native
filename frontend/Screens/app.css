@@ -6,4 +6,6 @@ body{
    flex-direction: column;
    column-gap: 20px;
    cursor: pointer;
+   color: rgb(58, 178, 243);
+   background-image: linear-gradient(to right,rgb(234, 84, 109),rgb(233, 89, 180));
 }

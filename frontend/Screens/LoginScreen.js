@@ -5,6 +5,8 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Pressable,
+  Text,
+  TextInput
 } from "react-native";
 
 const LoginScreen = () => {
@@ -28,15 +30,15 @@ const LoginScreen = () => {
       <KeyboardAvoidingView>
         <view
           style={{
-            marginTop: 100,
+            marginTop: 20,
             justifyContent: "center",
             alignItems: "center",
-            padding: "40px",
-            borderRadius: "30px",
+            padding: "30px",
+            borderRadius: "16px",
             border: "1px solid black",
             boxShadow:
-              "0 0 10px rgb(41, 89, 249) ,0 0 25px rgb(41, 89, 249)",
-            backgroundColor: "black",
+              "0 0 10px ,0 0 25px ",
+            backgroundColor: "#f1f7fe",
             display: "flex",
             alignItem: "center",
             flexDirection: " column",
@@ -51,52 +53,55 @@ const LoginScreen = () => {
             style={{
               fontSize: "1.5rem",
               fontWeight: "900",
-              color: "rgb(41, 89, 249)",
-              marginTop: "40px",
+              color: "Black",
+              marginTop: "20px",
             }}
           >
             Sign In to your Account
           </text>
           <text
             style={{
-              color: "rgb(41, 89, 249)",
+              color: "black",
               fontSize: "2rem",
               fontWeight: "900",
-              marginTop: "40px",
-              marginRight: "145px",
+              marginTop: "20px",
+              marginRight: "190px",
             }}
           >
             Email
           </text>
-          <textInput
+          <TextInput
             value={email}
             onChangeText={(text) => setEmail(text)}
             style={{
               borderBottomColor: "green",
               borderBottomWidth: 1,
               marginVertical: 10,
-              width: 230,
+              width: 280,
               border: "2px solid rgb(41, 89, 249)",
-              marginTop: "30px",
+              marginTop: 20,
               padding: "15px",
               borderRadius:"8px",
               cursor: "pointer",
+              
+            
             }}
-            placeholderTextColor={"white"}
+            placeholderTextColor={"gray"}
             placeholder="enter your Email"
           />
           <text
             style={{
               fontSize: "2rem",
               fontWeight: "bold",
-              color: "rgb(41, 89, 249)",
-              marginTop: "20px",
-              marginRight: "120px",
+              color: "black",
+              marginTop: "10px",
+              marginRight: "140px",
             }}
           >
             Password
           </text>
-          <textInput
+        
+          <TextInput
             value={password}
             onChangeText={(text) => SetPassword(text)}
             secureTextEntry={true}
@@ -105,12 +110,12 @@ const LoginScreen = () => {
               borderBottomcolor: "gray",
               borderBottomWidth: 1,
               marginVertical: 10,
-              width: 230,
-              marginTop: "20px",
+              width: 280,
+              marginTop: 20,
               border: "2px solid rgb(41, 89, 249)",
               padding: "15px",
               borderRadius:"8px",
-              color:"white",
+              color:"gray",
               cursor: "pointer",
             }}
             placeholderTextcolor={"white"}
@@ -119,7 +124,7 @@ const LoginScreen = () => {
           <Pressable
             style={{
               width: 200,
-              backgroundColor: "black",
+              // backgroundColor: "black",
               padding: 15,
               marginLeft: "auto",
               marginRight: "auto",
@@ -128,19 +133,21 @@ const LoginScreen = () => {
           >
             <text
               style={{
-                color: "white",
+                color: "black",
                 fontSize: "1.5rem",
                 fontWeight: "bold",
                 display: "block",
                 marginLeft: "auto",
                 marginRight: "auto",
-                border: "1px solid blue",
+                // border: "1px solid blue",
                 padding: "15px",
                 paddingLeft: "25px",
                 paddingRight: "25px",
                 borderRadius: "8px",
-                boxShadow: "0 0 5px blue,0 0 10px blue",
-                marginTop: "40px",
+                backgroundColor:"royalblue",
+                boxShadow: "0 0 5px ,0 0 10px ",
+                marginTop: 10,
+                
               }}
             >
               Login
@@ -150,8 +157,8 @@ const LoginScreen = () => {
             onPress={() => navigation.navigate("Register")}
             style={{ marginTop: 15 }}
           >
-            <text style={{ textAlign: "center", color: "skyBlue", fontSize: 16 }}>
-              Don't have an account? Sign Up
+            <text style={{ textAlign: "center", color: "black", fontSize: 16 }}>
+              Don't have an account? <i style={{color:"blue"}}> Sign Up</i>
             </text>
           </Pressable>
         </view>
