@@ -23,7 +23,7 @@ const RegisterScreen = () => {
             }}
             >
                 <Text style={{color:"#4a55a2",fontSize:17,fontWeight:"600"
-            }}>Sign In</Text>
+            }}>RegisterScreen</Text>
             <Text style={{
                 fontSize:17,fontWeight:"600",marginTop:15
             }}>
@@ -82,9 +82,9 @@ const RegisterScreen = () => {
             style={{
                 marginTop:15
             }}>
-                <text style={{ textAlign: "center", color: "gray", fontSize: 16 }}>
-              Already have an account? <i style={{color:"blue"}}> Sign Up</i>
-            </text>
+                <Text style={{ textAlign: "center", color: "gray", fontSize: 16 }}>
+              Already have an account? <Text style={{color:"blue"}}> Sign In</Text>
+            </Text>
             
             </Pressable>
 
