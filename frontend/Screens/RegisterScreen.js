@@ -1,12 +1,37 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {View, StyleSheet,Text,TextInput,Pressable,KeyboardAvoidingView} from 'react-native';
+import axios from 'axios';
 
 const RegisterScreen = () => {
     const [email,setEmail]= useState("");
     const[name,setName] = useState("");
-    const [password, SetPassword] = useState("");
+    const [password, setPassword] = useState("");
     const navigation = useNavigation();
+    const [image,setImage ]= useState("");
+    const handleRegister = () =>{
+        const user = {
+            name:name,
+            email:email,
+            password:password,
+            image:image
+        }
+        axios.post("http://localhost:8000/register",user).then((response)=>{
+            console.log(response);
+            Alert.alert(
+                "Registeration sucessful",
+                "You have been registered Sucessfully"
+            );
+            setName("");
+            setEmail("");
+            setPassword("");
+            setImage("")
+
+        }).catch((error)=>
+        Alert.alert("Registeration Error",
+        "An error ocurend in registeration")
+        );
+    }
     return (
         <View style={{
             flex:1,
@@ -22,12 +47,12 @@ const RegisterScreen = () => {
                 alignItems:"center"
             }}
             >
-                <Text style={{color:"#4a55a2",fontSize:17,fontWeight:"600"
-            }}>RegisterScreen</Text>
+                <Text style={{color:"#4a55a2",fontSize:17,fontWeight:"900"
+            }}>Register</Text>
             <Text style={{
                 fontSize:17,fontWeight:"600",marginTop:15
             }}>
-                    Sign In to Your Account 
+                    Sign Up to create Account 
             </Text>
             <View style={{
                 marginTop: 50
@@ -56,6 +81,18 @@ const RegisterScreen = () => {
                 >
 
                 </TextInput>
+                <Text style={{fontSize:18,fontWeight:"600",color:"black"}}>
+                 Image
+                </Text>
+                <TextInput 
+                  value={password}
+                  onChangeText={(text)=>setImage(text)}
+                style={{borderBottomColor:"black",borderBottomWidth:1,marginVertical:10,width:300}}
+                placeholder='Image'
+                placeholderTextColor={"black"}
+                >
+
+                </TextInput>
             </View>
             <Pressable 
             style={{
@@ -67,14 +104,18 @@ const RegisterScreen = () => {
                 marginRight:"auto",
                 borderRadius:6
             }}>
+                <Pressable
+                onPress={handleRegister}
+                >
                 <Text style={{
                     color:"white",
                     fontSize:16,
                     fontWeight:"bold",
                     textAlign:"center"
                 }}>
-                    Login
+                    Register
                 </Text>
+                </Pressable>
             </Pressable>
 
             <Pressable 

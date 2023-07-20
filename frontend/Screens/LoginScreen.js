@@ -13,7 +13,7 @@ const LoginScreen = () => {
  
     const [email,setEmail]= useState("");
     const[name,setName] = useState("");
-    const [password, SetPassword] = useState("");
+    const [password, setPassword] = useState("");
     const navigation = useNavigation();
     return (
         <View style={{
@@ -57,7 +57,7 @@ const LoginScreen = () => {
                 </Text>
                 <TextInput 
                   value={password}
-                  onChangeText={(text)=>setPassword(text)}
+                  onChangeText={(text)=> setPassword(text)}
                 style={{borderBottomColor:"black",borderBottomWidth:1,marginVertical:10,width:300}}
                 placeholder='password'
                 placeholderTextColor={"black"}

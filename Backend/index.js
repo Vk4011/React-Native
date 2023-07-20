@@ -30,3 +30,19 @@ mongoose.connect(
 app.listen(port,()=>{
     console.log("\n\t Server running on port 8000")
 })
+
+const User = require("./Api/user");
+const Message = require("./Models/Message")
+
+
+app.post("/register",(req,res)=>{
+    const {name,email,password,image} = req.body;
+
+    const newUser = new User({name,email,password,image})
+    newUser.save().then(()=>{
+        res.status(200).json({Message:"User registered Sucessfull"})
+    }).catch((err)=>{
+        console.log("Error registering user",err);
+        res.status(500).json({Message: "Error registering the user!"});
+    })
+})
