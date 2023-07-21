@@ -6,6 +6,8 @@ const LocalStrategy = require("passport-local").Strategy
 const dotenv = require("dotenv")
 const cors = require("cors");
 const app=express();
+const User = require("./Models/user");
+const { configDotenv } = require("dotenv");
 
 app.use(cors());
 dotenv.config();
@@ -41,9 +43,7 @@ app.get("/",(req,res)=>{
 
 
 
-const User = require("./Models/user");
-const Message = require("./Models/message");
-const { configDotenv } = require("dotenv");
+
 
 
 app.post("/register",(req,res)=>{
