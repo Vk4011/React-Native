@@ -17,7 +17,7 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
   const [image, setImage] = useState("");
-  const handleRegister = async () => {
+  const handleRegister = async  () => {
     const user = {
       name: name,
       email: email,
@@ -25,10 +25,19 @@ const RegisterScreen = () => {
       image: image,
     };
     console.log("at line 28");
-    await axios
-      .get("https://chat-app-g1yw.onrender.com/")
+   await axios
+      .post("https://chat-app-g1yw.onrender.com/register", {email, name, password, image})
       .then((response) => {
         // Handle the successful response
+
+        Alert.alert(
+          "Registeration sucessful",
+          "You have been registered Sucessfully"
+        );
+        setName("");
+        setEmail("");
+        setPassword("");
+        setImage("");
         console.log(response.data);
       })
       .catch((error) => {
