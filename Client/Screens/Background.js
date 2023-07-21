@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable,Button } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 const logoImg = require("../assets/chat-bot.png");
