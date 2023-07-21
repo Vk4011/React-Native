@@ -26,7 +26,7 @@ const RegisterScreen = () => {
     };
     console.log("at line 28");
     await axios
-      .get("https://jsonplaceholder.typicode.com/todos/1")
+      .get("https://chat-app-g1yw.onrender.com/")
       .then((response) => {
         // Handle the successful response
         console.log(response.data);
