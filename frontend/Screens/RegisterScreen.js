@@ -17,37 +17,54 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
   const [image, setImage] = useState("");
-  const handleRegister =async () => {
+  const handleRegister = async () => {
     const user = {
       name: name,
       email: email,
       password: password,
       image: image,
     };
-    // axios.post("http://localhost:6000/register", user)
+    console.log("at line 28");
+    await axios
+      .get("https://jsonplaceholder.typicode.com/todos/1")
+      .then((response) => {
+        // Handle the successful response
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle the error
+        console.error(error);
+      });
+    
+    console.log("line 30");
+    // fetch('http://localhost:6000/register',{
+    //   method:"POST",
 
-     try{
-        const response = await axios.post("http://localhost:6000/register", user)
-        console.log(response);
-        Alert.alert(
-          "Registeration sucessful",
-          "You have been registered Sucessfully"
-        );
-        setName("");
-        setEmail("");
-        setPassword("");
-        setImage("");
-        }
-        catch{
-            ((error) => {
-                Alert.alert(
-                  "\n\tRegisteration Error",
-                  " An error ocurend in registeration"
-                );
-                console.log("\n\t Registeration failed", error);
-              });
-        }
+    // }).then(res=>res.json())
+    // .then(data=>console.log(err))
+    // .catch(err=>console.log(err));
 
+    //  try{
+    //     const response = await axios.post("http://localhost:6000/register", user)
+    //     console.log(response);
+    //     Alert.alert(
+    //       "Registeration sucessful",
+    //       "You have been registered Sucessfully"
+    //     );
+    //     setName("");
+    //     setEmail("");
+    //     setPassword("");
+    //     setImage("");
+    //     }
+    //     catch{
+    //         ((error) => {
+    //             Alert.alert(
+    //               "\n\tRegisteration Error",
+    //               " An error ocurend in registeration"
+    //             );
+    //             console.log("\n\t Registeration failed", error);
+    //           });
+    //     }
   };
   return (
     <View

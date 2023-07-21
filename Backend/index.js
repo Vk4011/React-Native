@@ -3,11 +3,13 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy
-
-const app=express();
-const port=6000;
+const dotenv = require("dotenv")
 const cors = require("cors");
+const app=express();
+
 app.use(cors());
+dotenv.config();
+const port= process.env.PORT || 4000;
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -16,7 +18,7 @@ const jwt = require("jsonwebtoken");
 
 
 mongoose.connect(
-    "mongodb+srv://gvikramram63:vikram@cluster0.a1bb657.mongodb.net/",
+    process.env.MONGODB_URL,
     {
     useNewUrlParser:true,
     useUnifiedTopology:true
@@ -27,11 +29,13 @@ mongoose.connect(
     console.log("\n\t Error connecting to MongoDB",error)
 });
 app.listen(port,()=>{
-    console.log("\n\t Server running on port : 6000  ")
+    console.log("\n\t Server running on port : 4000  ")
 })
 
 app.get("/",(req,res)=>{
+    console.log("chat app main end point got hit");
     res.send("\n\t backend working");
+
        
 })
 
@@ -39,6 +43,7 @@ app.get("/",(req,res)=>{
 
 const User = require("./Models/user");
 const Message = require("./Models/message");
+const { configDotenv } = require("dotenv");
 
 
 app.post("/register",(req,res)=>{
