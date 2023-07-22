@@ -58,6 +58,16 @@ app.post("/register",(req,res)=>{
         res.status(500).json({message: "Error registering the user!"});
     })
 })
+ const createToken = (userId) =>{
+    const payload = {
+        userId: userId,
+    }
+
+
+ const token= jwt.sign(payload,"Q$",{expiresIn: "1h"});
+ return token;
+ }
+
 
 
 app.post("/login",(req,res)=>{
@@ -75,8 +85,11 @@ app.post("/login",(req,res)=>{
             return res.status(404).json({message:"Invalid password"})
         }
         const token = createToken(user._id);
-        res.status(200).json({token})
-    })
+        res.status(200).json({token});
+    }).catch((errror)=>{
+        console.log("\n\t Error in finding the user",error);
+        res.status(500).json({message: "Internal server Error!"});
+    });
 })
 
 
