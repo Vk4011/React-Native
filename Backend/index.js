@@ -105,4 +105,15 @@ app.get("/users/:userId",(req,res)=>{
     })
 });
 
+//end point to send a request  to a user
+
+app.post("/friend-request",async(req,res)=>{
+    const {currentUserId,selectedUserId} = req.body;
+    try{
+
+    }catch(error){
+        res.sendStatus(500);
+    }
+})
+
 
