@@ -38,7 +38,7 @@ const LoginScreen = () => {
       password: password,
     };
     axios
-      .post("https://localhost:4000/login", user)
+      .post("https://chat-app-g1yw.onrender.com/login", user)
       .then((response) => {
         console.log(response);
         const token = response.data.token;
