@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { UserType } from "../UserContext";
 const HomeScreen = () => {
+  console.log("entry point")
   const navigation = useNavigation();
   const { userId, setUserId } = useContext(UserType);
   const [user, setUser] = useState([]);
@@ -38,13 +39,14 @@ const HomeScreen = () => {
         });
     };
   }, []);
-  console.log("users",users)
+  
+  console.log("users",user)
 
   return (
     <View>
         <View>
-            {users.map((item,index) =>{
-            <User key={index}item={item}/>
+            {user.map((item,index) =>{
+            <UserType key={index}item={item}/>
              
             })}
         </View>
