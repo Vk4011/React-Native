@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Background from "./Screens/Background";
 import Scroll from "./Screens/Scroll";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Home from "./Screens/Home";
+import Pressables from "./Screens/Pressables";
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -26,6 +27,11 @@ const StackNavigator = () => {
           <Stack.Screen
             name="Scroll"
             component={Scroll}
+            options={{ headerShown: false }}
+          />
+             <Stack.Screen
+            name="Pressable"
+            component={Pressables}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

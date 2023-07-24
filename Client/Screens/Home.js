@@ -49,7 +49,9 @@ const Home = () => {
             >
             <Button
                 title="Hello"
-                onPress={() => console.log("\n\t Mark 42")}
+                onPress={() =>{ console.log("\n\t Mark 42")
+              navigation.navigate("Pressable")
+              }}
                 color="midnightblue"
                 
               ></Button>

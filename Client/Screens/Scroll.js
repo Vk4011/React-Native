@@ -8,7 +8,16 @@ const Scroll = () => {
   return (
     <View>
       <ScrollView>
-        <Text style={{textAlign:"center",marginTop:40,fontSize:25,fontWeight:900,color:"green",backgroundColor:"black"}}>
+        <Text
+          style={{
+            textAlign: "center",
+            marginTop: 40,
+            fontSize: 25,
+            fontWeight: 900,
+            color: "green",
+            backgroundColor: "black",
+          }}
+        >
           Machine learning is a branch of artificial intelligence (AI) and
           computer science which focuses on the use of data and algorithms to
           imitate the way that humans learn, gradually improving its accuracy.
@@ -32,7 +41,14 @@ const Scroll = () => {
           will be required to help identify the most relevant business questions
           and the data to answer them. Machine learning algorithms are typically
           created using frameworks that accelerate solution development, such as
-          TensorFlow and PyTorch. Now available:
+          TensorFlow and PyTorch. Now available: Google's mission has always
+          been to organize the world's information and make it universally
+          accessible and useful. We're excited about the transformational power
+          of AI and the helpful new ways it can be applied. From research that
+          expands what's possible, to product integrations designed to make
+          everyday things easier, and applying AI to make a difference in the
+          lives of those who need it most-we're committed to responsible
+          innovation and technologies that benefit all of humanity.
         </Text>
       </ScrollView>
     </View>
