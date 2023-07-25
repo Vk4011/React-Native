@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, Button } from "react-native";
+import { StyleSheet, Text, View, Pressable, Button,StatusBar } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
@@ -8,6 +8,7 @@ const Home = () => {
   return (
     <>
       <View style={{ flex: 1, backgroundColor: "plum" }}>
+        <StatusBar backgroundColor="lightgreen" barStyle="dark-content" />
         <View
           style={{
             width: 200,
