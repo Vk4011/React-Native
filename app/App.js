@@ -1,3 +1,4 @@
+// App.js
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
@@ -11,6 +12,7 @@ import Chart from "./components/Chart.js";
 export default function App() {
   const [data, setData] = useState([]);
   const [selectedCrypto, setSelectedCrypto] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     getCryptoData();
@@ -25,6 +27,7 @@ export default function App() {
       // const jsonData = await response.json();
       const jsonData = api;
       setData(jsonData);
+      setFilteredData(jsonData); // Set initial filtered data
     } catch (error) {
       console.log(error);
     }
@@ -38,16 +41,20 @@ export default function App() {
   const openModal = (crypto) => {
     setSelectedCrypto([crypto]);
     bottomSheetRef.current?.expand();
-    console.log('firstCrypto');
   };
- 
+
+  const handleSearch = (query) => {
+    const filtered = data.filter(crypto => crypto.name.toLowerCase().includes(query.toLowerCase()));
+    setFilteredData(filtered);
+  };
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaView style={styles.container}>
-        <ListHeader />
+        <ListHeader onSearch={handleSearch} />
         <View style={styles.divider} />
         <ScrollView>
-          { data && data.map((crypto, index) => (
+          { filteredData.map((crypto, index) => (
             <ListItem
               key={index}
               name={crypto.name}

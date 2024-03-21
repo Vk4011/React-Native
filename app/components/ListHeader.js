@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import searchIcon from '../assets/search.png';
 
-function ListHeader() {
+function ListHeader({ onSearch }) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = () => {
-    console.log('Search query:', searchQuery);
+    onSearch(searchQuery);
   };
 
   return (
@@ -72,4 +72,3 @@ const styles = StyleSheet.create({
 });
 
 export default ListHeader;
-
