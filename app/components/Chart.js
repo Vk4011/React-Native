@@ -7,31 +7,37 @@ const Chart = ({
   logoUrl,
   name,
   symbol,
+  priceChangePercentage7d,
   sparkline,
   currentPrice,
 }) => {
 
+  const priceChangeColor = priceChangePercentage7d ? (priceChangePercentage7d > 0 ? 'green' : 'red') : 'black';
+
 
   return (
     <View style={styles.chartWrapper}>
-      <View style={styles.titleWrapper}>
-        <View style={styles.upperTitle}>
-          <View style={styles.upperLeftWrapper}>
-            <Image source={{ uri: logoUrl }} style={styles.image} />
-            <Text style={styles.subtitle}>{name} ({symbol})</Text>
-          </View>
-          <Text style={styles.subtitle}>7d</Text>
+    {/* Titles */}
+    <View style={styles.titlesWrapper}>
+      <View style={styles.upperTitles}>
+        <View style={styles.upperLeftTitle}>
+          <Image source={{ uri: logoUrl }} style={styles.image} />
+          <Text style={styles.subtitle}>
+            {name} ({symbol.toUpperCase()})
+          </Text>
         </View>
-        <Text>${currentPrice}</Text>
-        <Text style={{ color: currentPriceChangePercentage > 0 ? "#34C759" : "#FF3B30" }}>
-          {currentPriceChangePercentage}
+        <Text style={styles.subtitle}>7d</Text>
+      </View>
+
+      <View style={styles.lowerTitles}>
+        <Text style={styles.boldTitle}>${currentPrice.toLocaleString('en-US', { currency: 'USD' })}</Text>
+        {/* Check if priceChangePercentage7d is defined before using it */}
+        <Text style={[styles.title, { color: priceChangeColor }]}>
+          {priceChangePercentage7d ? priceChangePercentage7d.toFixed(2) + "%" : "N/A"}
         </Text>
       </View>
-      {/* {sparkline && sparkline.currentPrice !== undefined ? (
-        <Text>Sparkline: {sparkline.currentPrice}</Text>
-      ) : (
-        <Text>No sparkline data available</Text>
-      )} */}
+    </View>
+     
     </View>
   );
 };
