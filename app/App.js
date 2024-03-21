@@ -1,11 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useMemo,
-  useRef,
-} from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 import ListItem from "./components/ListItem";
 import ListHeader from "./components/ListHeader";
@@ -16,7 +10,7 @@ import Chart from "./components/Chart.js";
 
 export default function App() {
   const [data, setData] = useState([]);
-  const [selectedCrypto, setSelectedCrypto] = useState(null);
+  const [selectedCrypto, setSelectedCrypto] = useState([]);
 
   useEffect(() => {
     getCryptoData();
@@ -24,6 +18,7 @@ export default function App() {
 
   const getCryptoData = async () => {
     try {
+      // Fetch cryptocurrency data
       // const response = await fetch(
       //   `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=108&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d`
       // );
@@ -36,29 +31,30 @@ export default function App() {
   };
 
   const bottomSheetRef = useRef(null);
-  const handleSheetChanges = useCallback((index: number) => {
+  const handleSheetChanges = useCallback((index) => {
     console.log("handleSheetChanges", index);
   }, []);
 
-  const openSheet = useCallback((crypto) => {
+  const openModal = (crypto) => {
+    setSelectedCrypto([crypto]);
     bottomSheetRef.current?.expand();
-    setSelectedCrypto(crypto);
-  }, []);
-
+    console.log('firstCrypto');
+  };
+ 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaView style={styles.container}>
         <ListHeader />
         <View style={styles.divider} />
         <ScrollView>
-          {data.map((crypto, index) => (
+          { data && data.map((crypto, index) => (
             <ListItem
               key={index}
               name={crypto.name}
               logoUrl={crypto.image}
               symbol={crypto.symbol}
               currentPrice={crypto.current_price}
-              onPress={() => openSheet(crypto)}
+              onPress={() => openModal(crypto)}
               priceChangePercentage={crypto.price_change_percentage_24h}
             />
           ))}
@@ -68,18 +64,20 @@ export default function App() {
       <BottomSheet
         ref={bottomSheetRef}
         onChange={handleSheetChanges}
-        snapPoints={[30, 300, 500]}
+        snapPoints={[30, 500]}
       >
-        <BottomSheetView style={styles.contentContainer}>
+        <BottomSheetView style={{padding:30}}>
           <Text>Awesome 🎉</Text>
-          {selectedCrypto && (
+          {selectedCrypto.length > 0 && (
             <Chart
-              currentPrice={selectedCrypto.current_price}
-              logoUrl={selectedCrypto.image}
-              name={selectedCrypto.name}
-              symbol={selectedCrypto.symbol}
-              priceChangePercentage={selectedCrypto.price_change_percentage_24h}
-              sparkline={selectedCrypto.sparkline_in_7d.price}
+              currentPrice={selectedCrypto[0].current_price}
+              logoUrl={selectedCrypto[0].image}
+              name={selectedCrypto[0].name}
+              symbol={selectedCrypto[0].symbol}
+              priceChangePercentage={
+                selectedCrypto[0].price_change_percentage_24h
+              }
+              // sparkline={selectedCrypto[0].sparkline_in_7d.price}
             />
           )}
         </BottomSheetView>
@@ -104,5 +102,23 @@ const styles = StyleSheet.create({
     padding: 16,
     alignItems: "center",
     justifyContent: "center",
+  },
+  bottomSheet: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: -4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  titleWrapper: {
+    marginTop: 20,
+    paddingHorizontal: 16,
+  },
+  largeTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
   },
 });

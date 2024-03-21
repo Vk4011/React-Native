@@ -1,65 +1,82 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 
-function Chart({
+const Chart = ({
   currency,
-  priceChangePercentage,
+  currentPriceChangePercentage,
   logoUrl,
   name,
   symbol,
   sparkline,
   currentPrice,
-}) {
+}) => {
+
+
   return (
     <View style={styles.chartWrapper}>
       <View style={styles.titleWrapper}>
         <View style={styles.upperTitle}>
           <View style={styles.upperLeftWrapper}>
             <Image source={{ uri: logoUrl }} style={styles.image} />
-            <Text style={styles.subtitle}>{name} {symbol}</Text>
+            <Text style={styles.subtitle}>{name} ({symbol})</Text>
           </View>
           <Text style={styles.subtitle}>7d</Text>
         </View>
         <Text>${currentPrice}</Text>
-        <Text style={{ color: priceChangePercentage > 0 ? "#34C759" : "#FF3B30" }}>
-          {priceChangePercentage.toFixed(2)}%
+        <Text style={{ color: currentPriceChangePercentage > 0 ? "#34C759" : "#FF3B30" }}>
+          {currentPriceChangePercentage}
         </Text>
       </View>
+      {/* {sparkline && sparkline.currentPrice !== undefined ? (
+        <Text>Sparkline: {sparkline.currentPrice}</Text>
+      ) : (
+        <Text>No sparkline data available</Text>
+      )} */}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   chartWrapper: {
-    marginTop: 20,
-    marginHorizontal: 16,
-    height: 300,
-    backgroundColor: "#4d5061",
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    marginVertical: 16
   },
-  titleWrapper: {
-    marginTop: 80,
-    paddingHorizontal: 16,
+  titlesWrapper: {
+    marginHorizontal: 16
   },
-  upperTitle: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+  upperTitles: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  upperLeftWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
+  upperLeftTitle: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   image: {
-    height: 24,
-    width: 24,
+    width: 44,
+    height: 44,
+    marginRight: 4,
   },
   subtitle: {
-    fontSize: 16,
-    color: "#A9ABB1",
+    fontSize: 14,
+    color: '#A9ABB1',
+  },
+  lowerTitles: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  boldTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  title: {
+    fontSize: 18,
+  },
+  chartLineWrapper: {
+    marginTop: 40,
   },
 });
+
 
 export default Chart;
